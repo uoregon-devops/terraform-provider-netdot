@@ -51,6 +51,7 @@ func RRCnameModelToRRCnameQuery(model rrCnameModel) netdot.RRCnameQuery {
 }
 
 var rrCnameDataSourceSchema = datasourceSchema.Schema{
+	Description: "A CNAME points a resource record to another domain name.",
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
 			Description: "ID of the CNAME record.",
@@ -76,6 +77,7 @@ var rrCnameDataSourceSchema = datasourceSchema.Schema{
 }
 
 var rrCnameResourceSchema = resourceSchema.Schema{
+	Description: "A CNAME points a resource record to another domain name.",
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
 			Description: "ID of the CNAME record.",

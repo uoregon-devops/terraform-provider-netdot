@@ -149,6 +149,7 @@ func IPBlockModelToIPBlockQuery(model ipblockModel) netdot.IpBlockQuery {
 }
 
 var ipblockResourceSchema = resourceSchema.Schema{
+	Description: "Resource the represets IPs, subnets, and containers in Netdot.",
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
 			Description: "ID of the IP block.",
@@ -305,6 +306,7 @@ var ipblockResourceSchema = resourceSchema.Schema{
 }
 
 var ipblockDataSourceSchema = datasourceSchema.Schema{
+	Description: "Resource the represets IPs, subnets, and containers in Netdot.",
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
 			Description: "ID of the IP block.",

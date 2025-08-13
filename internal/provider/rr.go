@@ -73,6 +73,7 @@ func RRModelToRRQuery(model rrModel) netdot.RRQuery {
 }
 
 var rrDataSourceSchema = datasourceSchema.Schema{
+	Description: "An RR (resource record) represent a domain name, and is associated with a zone.",
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
 			Description: "ID of the resource record.",
@@ -114,6 +115,7 @@ var rrDataSourceSchema = datasourceSchema.Schema{
 }
 
 var rrResourceSchema = resourceSchema.Schema{
+	Description: "An RR (resource record) represent a domain name, and is associated with a zone.",
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
 			Description: "ID of the resource record.",

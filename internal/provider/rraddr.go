@@ -53,6 +53,7 @@ func RRAddrModelToRRAddrQuery(model rrAddrModel) netdot.RRAddrQuery {
 }
 
 var rrAddrDataSourceSchema = datasourceSchema.Schema{
+	Description: "An A record creates a mapping between an RR and an IP address.",
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
 			Description: "The A record's ID.",
@@ -82,6 +83,7 @@ var rrAddrDataSourceSchema = datasourceSchema.Schema{
 }
 
 var rrAddrResourceSchema = resourceSchema.Schema{
+	Description: "An A record creates a mapping between an RR and an IP address.",
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
 			Description: "The A record's ID.",

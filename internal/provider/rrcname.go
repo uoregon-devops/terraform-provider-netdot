@@ -53,19 +53,24 @@ func RRCnameModelToRRCnameQuery(model rrCnameModel) netdot.RRCnameQuery {
 var rrCnameDataSourceSchema = datasourceSchema.Schema{
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of the CNAME record.",
+			Optional:    true,
 		},
 		"cname": datasourceSchema.StringAttribute{
-			Optional: true,
+			Description: "CNAME target domain.",
+			Optional:    true,
 		},
 		"rr": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Associated resource record name.",
+			Computed:    true,
 		},
 		"rr_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the associated resource record.",
+			Computed:    true,
 		},
 		"ttl": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "Time to live for the CNAME record in seconds.",
+			Computed:    true,
 		},
 	},
 }
@@ -73,27 +78,32 @@ var rrCnameDataSourceSchema = datasourceSchema.Schema{
 var rrCnameResourceSchema = resourceSchema.Schema{
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the CNAME record.",
+			Computed:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"cname": resourceSchema.StringAttribute{
-			Required: true,
+			Description: "CNAME target domain.",
+			Required:    true,
 		},
 		"rr": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Associated resource record name.",
+			Computed:    true,
 		},
 		"rr_id": resourceSchema.Int64Attribute{
-			Required: true,
+			Description: "ID of the associated resource record.",
+			Required:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"ttl": resourceSchema.Int64Attribute{
-			Optional: true,
-			Computed: true,
-			Default:  int64default.StaticInt64(600),
+			Description: "Time to live for the CNAME record in seconds.",
+			Optional:    true,
+			Computed:    true,
+			Default:     int64default.StaticInt64(600),
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},

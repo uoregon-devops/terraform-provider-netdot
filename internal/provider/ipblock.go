@@ -151,30 +151,34 @@ func IPBlockModelToIPBlockQuery(model ipblockModel) netdot.IpBlockQuery {
 var ipblockResourceSchema = resourceSchema.Schema{
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the IP block.",
+			Computed:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"address": resourceSchema.StringAttribute{
-			Optional: true,
-			Computed: true,
+			Description: "IP or optionally CIDR of ipblock.",
+			Optional:    true,
+			Computed:    true,
 			PlanModifiers: []planmodifier.String{
 				stringplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"prefix": resourceSchema.Int64Attribute{
-			Optional: true,
-			Computed: true,
-			Default:  int64default.StaticInt64(32),
+			Description: "The prefix length of the IP block.",
+			Optional:    true,
+			Computed:    true,
+			Default:     int64default.StaticInt64(32),
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"version": resourceSchema.Int64Attribute{
-			Optional: true,
-			Computed: true,
-			Default:  int64default.StaticInt64(4),
+			Description: "IP version of the block (4 or 6).",
+			Optional:    true,
+			Computed:    true,
+			Default:     int64default.StaticInt64(4),
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
@@ -189,92 +193,110 @@ var ipblockResourceSchema = resourceSchema.Schema{
 			},
 		},
 		"status_id": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the status of the IP block.",
+			Computed:    true,
 		},
 		"asn": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "Name of the autonomous system.",
+			Computed:    true,
 		},
 		"asn_id": resourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of the autonomous system.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"description": resourceSchema.StringAttribute{
-			Optional: true,
+			Description: "Description of the IP block.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.String{
 				stringplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"info": resourceSchema.StringAttribute{
-			Optional: true,
+			Description: "Additional information about the IP block.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.String{
 				stringplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"interface": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Name of the interface associated with the IP block.",
+			Computed:    true,
 		},
 		"interface_id": resourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of the interface associated with the IP block.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"monitored": resourceSchema.BoolAttribute{
-			Optional: true,
-			Computed: true,
-			Default:  booldefault.StaticBool(false),
+			Description: "Indicates whether the IP block is monitored.",
+			Optional:    true,
+			Computed:    true,
+			Default:     booldefault.StaticBool(false),
 			PlanModifiers: []planmodifier.Bool{
 				boolplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"owner": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Name of the owner associated with the IP block.",
+			Computed:    true,
 		},
 		"owner_id": resourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of the owner associated with the IP block.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"parent": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "CIDR of the parent IP block.",
+			Computed:    true,
 		},
 		"parent_id": resourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of the parent IP block.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"rir": resourceSchema.StringAttribute{
-			Optional: true,
+			Description: "I have no idea what this does...",
+			Optional:    true,
 			PlanModifiers: []planmodifier.String{
 				stringplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"use_network_broadcast": resourceSchema.BoolAttribute{
-			Optional: true,
-			Computed: true,
-			Default:  booldefault.StaticBool(false),
+			Description: "Whether the network and broadcast addresses in this IPv4 block should be marked as reserved or not.",
+			Optional:    true,
+			Computed:    true,
+			Default:     booldefault.StaticBool(false),
 			PlanModifiers: []planmodifier.Bool{
 				boolplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"used_by": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Name of entity that uses this block.",
+			Computed:    true,
 		},
 		"used_by_id": resourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of entity that uses this block.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"vlan": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "VLANID (the actual VLAN ID) that this block is associated with.",
+			Computed:    true,
 		},
 		"vlan_id": resourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of VLAN (within the database, not the actual VLAN ID) that this block is associated with.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
@@ -285,73 +307,96 @@ var ipblockResourceSchema = resourceSchema.Schema{
 var ipblockDataSourceSchema = datasourceSchema.Schema{
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of the IP block.",
+			Optional:    true,
 		},
 		"address": datasourceSchema.StringAttribute{
-			Optional: true,
+			Description: "IP or optionally CIDR of ipblock.",
+			Optional:    true,
 		},
 		"prefix": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "The prefix length of the IP block.",
+			Computed:    true,
 		},
 		"version": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "IP version of the block (4 or 6).",
+			Computed:    true,
 		},
 		"status": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Static | Reserved | Available | Subnet | Container",
+			Computed:    true,
 		},
 		"status_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the status of the IP block.",
+			Computed:    true,
 		},
 		"asn": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "Name of the autonomous system.",
+			Computed:    true,
 		},
 		"asn_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the autonomous system.",
+			Computed:    true,
 		},
 		"description": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Description of the IP block.",
+			Computed:    true,
 		},
 		"info": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Additional information about the IP block.",
+			Computed:    true,
 		},
 		"interface": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Name of the interface associated with the IP block.",
+			Computed:    true,
 		},
 		"interface_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the interface associated with the IP block.",
+			Computed:    true,
 		},
 		"monitored": datasourceSchema.BoolAttribute{
-			Computed: true,
+			Description: "Indicates whether the IP block is monitored.",
+			Computed:    true,
 		},
 		"owner": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Name of the owner associated with the IP block.",
+			Computed:    true,
 		},
 		"owner_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the owner associated with the IP block.",
+			Computed:    true,
 		},
 		"parent": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "CIDR of the parent IP block.",
+			Computed:    true,
 		},
 		"parent_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the parent IP block.",
+			Computed:    true,
 		},
 		"rir": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "I have no idea what this does...",
+			Computed:    true,
 		},
 		"use_network_broadcast": datasourceSchema.BoolAttribute{
-			Computed: true,
+			Description: "Whether the network and broadcast addresses in this IPv4 block should be marked as reserved or not.",
+			Computed:    true,
 		},
 		"used_by": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Name of entity that uses this block.",
+			Computed:    true,
 		},
 		"used_by_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of entity that uses this block.",
+			Computed:    true,
 		},
 		"vlan": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "VLANID (the actual VLAN ID) that this block is associated with.",
+			Computed:    true,
 		},
 		"vlan_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of VLAN (within the database, not the actual VLAN ID) that this block is associated with.",
+			Computed:    true,
 		},
 	},
 }

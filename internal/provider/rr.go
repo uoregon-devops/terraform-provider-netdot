@@ -75,31 +75,40 @@ func RRModelToRRQuery(model rrModel) netdot.RRQuery {
 var rrDataSourceSchema = datasourceSchema.Schema{
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "ID of the resource record.",
+			Optional:    true,
 		},
 		"name": datasourceSchema.StringAttribute{
-			Optional: true,
+			Description: "Name of the resource record.",
+			Optional:    true,
 		},
 		"active": datasourceSchema.BoolAttribute{
-			Computed: true,
+			Description: "Active status of the resource record.",
+			Computed:    true,
 		},
 		"auto_update": datasourceSchema.BoolAttribute{
-			Computed: true,
+			Description: "Determines whether this record can be updated by an automated process. For example, if a Device Interface changes its name and the change is picked up by an SNMP update.",
+			Computed:    true,
 		},
 		"expiration": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Expiration date for this Record (YYYY-MM-DD).",
+			Computed:    true,
 		},
 		"info": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Additional information about the resource record.",
+			Computed:    true,
 		},
 		"zone": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Zone name for this Record.",
+			Computed:    true,
 		},
 		"zone_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "Zone ID for this Record.",
+			Computed:    true,
 		},
 		"fqdn": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Fully qualified domain name for this Record (name + zone).",
+			Computed:    true,
 		},
 	},
 }
@@ -107,50 +116,59 @@ var rrDataSourceSchema = datasourceSchema.Schema{
 var rrResourceSchema = resourceSchema.Schema{
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "ID of the resource record.",
+			Computed:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"name": resourceSchema.StringAttribute{
-			Required: true,
+			Description: "Name of the resource record.",
+			Required:    true,
 		},
 		"active": resourceSchema.BoolAttribute{
-			Optional: true,
-			Computed: true,
-			Default:  booldefault.StaticBool(true),
+			Description: "Active status of the resource record.",
+			Optional:    true,
+			Computed:    true,
+			Default:     booldefault.StaticBool(true),
 			PlanModifiers: []planmodifier.Bool{
 				boolplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"auto_update": resourceSchema.BoolAttribute{
-			Optional: true,
-			Computed: true,
-			Default:  booldefault.StaticBool(false),
+			Description: "Determines whether this record can be updated by an automated process. For example, if a Device Interface changes its name and the change is picked up by an SNMP update.",
+			Optional:    true,
+			Computed:    true,
+			Default:     booldefault.StaticBool(false),
 			PlanModifiers: []planmodifier.Bool{
 				boolplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"expiration": resourceSchema.StringAttribute{
-			Optional: true,
+			Description: "Expiration date for this Record (YYYY-MM-DD).",
+			Optional:    true,
 			PlanModifiers: []planmodifier.String{
 				stringplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"info": resourceSchema.StringAttribute{
-			Optional: true,
+			Description: "Additional information about the resource record.",
+			Optional:    true,
 			PlanModifiers: []planmodifier.String{
 				stringplanmodifier.UseStateForUnknown(),
 			},
 		},
 		"zone": resourceSchema.StringAttribute{
-			Required: true,
+			Description: "Zone name for this Record.",
+			Required:    true,
 		},
 		"zone_id": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "Zone ID for this Record.",
+			Computed:    true,
 		},
 		"fqdn": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "Fully qualified domain name for this Record (name + zone).",
+			Computed:    true,
 		},
 	},
 }

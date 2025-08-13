@@ -55,22 +55,28 @@ func RRAddrModelToRRAddrQuery(model rrAddrModel) netdot.RRAddrQuery {
 var rrAddrDataSourceSchema = datasourceSchema.Schema{
 	Attributes: map[string]datasourceSchema.Attribute{
 		"id": datasourceSchema.Int64Attribute{
-			Optional: true,
+			Description: "The A record's ID.",
+			Optional:    true,
 		},
 		"ipblock": datasourceSchema.StringAttribute{
-			Optional: true,
+			Description: "The CIDR of the A record's associated ipblock.",
+			Optional:    true,
 		},
 		"ipblock_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "The ID of the A record's associated ipblock.",
+			Computed:    true,
 		},
 		"rr": datasourceSchema.StringAttribute{
-			Computed: true,
+			Description: "The associated DNS record.",
+			Computed:    true,
 		},
 		"rr_id": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "The ID of the associated DNS record.",
+			Computed:    true,
 		},
 		"ttl": datasourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "Time to live for the A record in seconds.",
+			Computed:    true,
 		},
 	},
 }
@@ -78,33 +84,39 @@ var rrAddrDataSourceSchema = datasourceSchema.Schema{
 var rrAddrResourceSchema = resourceSchema.Schema{
 	Attributes: map[string]resourceSchema.Attribute{
 		"id": resourceSchema.Int64Attribute{
-			Computed: true,
+			Description: "The A record's ID.",
+			Computed:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"ipblock": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "The CIDR of the A record's associated ipblock.",
+			Computed:    true,
 		},
 		"ipblock_id": resourceSchema.Int64Attribute{
-			Required: true,
+			Description: "The ID of the A record's associated ipblock.",
+			Required:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"rr": resourceSchema.StringAttribute{
-			Computed: true,
+			Description: "The associated DNS record.",
+			Computed:    true,
 		},
 		"rr_id": resourceSchema.Int64Attribute{
-			Required: true,
+			Description: "The ID of the associated DNS record.",
+			Required:    true,
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},
 		},
 		"ttl": resourceSchema.Int64Attribute{
-			Optional: true,
-			Computed: true,
-			Default:  int64default.StaticInt64(600),
+			Description: "Time to live for the A record in seconds.",
+			Optional:    true,
+			Computed:    true,
+			Default:     int64default.StaticInt64(600),
 			PlanModifiers: []planmodifier.Int64{
 				int64planmodifier.UseStateForUnknown(),
 			},

@@ -49,6 +49,7 @@ type netdotProviderModel struct {
 // Schema defines the provider-level schema for configuration data.
 func (p *netdotProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
+		Description: "This provider facilitates the management of commonly used Netdot resources. It's built for the University of Oregon's internal fork of Netdot. It will break in some cases when used with other forks.",
 		Attributes: map[string]schema.Attribute{
 			"host": schema.StringAttribute{
 				Required: true,

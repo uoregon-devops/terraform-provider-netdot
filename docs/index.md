@@ -3,12 +3,12 @@
 page_title: "netdot Provider"
 subcategory: ""
 description: |-
-  
+  This provider facilitates the management of commonly used Netdot resources. It's built for the University of Oregon's internal fork of Netdot. It will break in some cases when used with other forks.
 ---
 
 # netdot Provider
 
-
+This provider facilitates the management of commonly used Netdot resources. It's built for the University of Oregon's internal fork of Netdot. It will break in some cases when used with other forks.
 
 
 

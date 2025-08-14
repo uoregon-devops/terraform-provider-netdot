@@ -125,6 +125,7 @@ func (p *netdotProvider) DataSources(_ context.Context) []func() datasource.Data
 		NewRRDataSource,
 		NewRRAddrDataSource,
 		NewRRCnameDataSource,
+		NewRRNsDataSource,
 	}
 }
 
@@ -135,5 +136,6 @@ func (p *netdotProvider) Resources(_ context.Context) []func() resource.Resource
 		NewIpblockResource,
 		NewRRAddrResource,
 		NewRRCnameResource,
+		NewRRNsResource,
 	}
 }

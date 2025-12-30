@@ -3,7 +3,7 @@ module terraform-provider-netdot
 go 1.23.7
 
 require (
-	github.com/google/go-querystring v1.1.0
+	github.com/google/go-querystring v1.2.0
 	github.com/hashicorp/terraform-plugin-framework v1.14.1
 )
 
